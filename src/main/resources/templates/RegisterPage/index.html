@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments :: head('Register Page')}"></head>
+<body class="flex flex-col min-h-screen text-gray-600 bg-[url('/images/bgimg.png')]">
+<div class="@container mx-auto px-4 py-8 m-auto flex flex-col justify-center items-center shadow-lg rounded-3xl w-md bg-white">
+    <h1 class="flex justify-center items-center text-center pb-5 text-3xl">Register</h1>
+    <form class="flex flex-col" action="/register" method="POST" th:object="${registerRequestDTO}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="text"
+               class="border-2 border-solid rounded-full border-indigo-500/75 h-10 w-full pl-5 transition-all duration-300 ease-in-out focus:scale-102 focus:shadow-md focus:outline-none"
+               id="username_input"
+               name="username"
+        />
+        <label class="block" for="username_input">
+            <span class="">Username</span>
+            <p class="invisible peer-invalid:visible ...">Please provide a valid email address.</p>
+        </label>
+
+        <input type="email"
+               class="border-2 border-solid rounded-full border-indigo-500/75 h-10 w-full pl-5 transition-all duration-300 ease-in-out focus:scale-102 focus:shadow-md focus:outline-none"
+               id="email_input"
+               name="email"
+        />
+        <label class="block" for="email_input">
+            <span class="">Email</span>
+            <p class="invisible peer-invalid:visible ...">Please provide a valid email address.</p>
+        </label>
+
+        <input type="password"
+               class="border-2 border-solid rounded-full border-indigo-500/75 h-10 w-full pl-5 transition-all duration-300 ease-in-out focus:scale-102 focus:shadow-md focus:outline-none"
+               id="psw_input"
+               name="password"
+        />
+        <label class="block" for="psw_input">
+            <span class="">Password</span>
+            <p class="invisible peer-invalid:visible ...">Please provide a valid email address.</p>
+        </label>
+
+        <button type="submit"
+                class="font-bold rounded-full bg-sky-500 flex justify-center justify-self-center self-center items-center h-10 w-full py-5 px-10 text-white cursor-pointer transition-transform duration-300 ease-in-out hover:bg-sky-600 hover:inset-ring-2 hover:inset-ring-sky-500 hover:scale-105">Register</button>
+        <div class="flex flex-row items-center justify-center  mt-3">
+            <p>Already have an account? <a th:href="@{login}" class="hover:text-sky-500 hover:underline transition-all duration-300 ease-in-out">Login</a></p>
+        </div>
+    </form>
+</div>
+</body>
+</html>
