@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="~{fragments :: head('Login Page')}"></head>
-<body class="flex flex-col min-h-screen text-gray-600 bg-[url('/images/bgimg.png')]">
+<head th:replace="~{fragments :: head('Login Page')}">
+</head>
+<script th:src="@{/js/LoginPage/script.js}" defer></script>
+
+<body class="flex flex-col min-h-screen text-gray-600 bg-[url('/images/bgimg.png')] z-0">
 <div class="@container mx-auto px-4 py-8 m-auto flex flex-col justify-center items-center shadow-lg rounded-3xl w-md bg-white">
+    <div class="fixed inset-0 backdrop-blur-xl flex justify-center items-center z-50 animate-fadeIn" id="error-popup" th:if="${param.error}">
+        <div class="@container mx-auto px-2 py-4 m-auto flex flex-col justify-center items-center shadow-lg rounded-3xl w-md bg-white">
+            <h2 class="color-red">Erro!</h2>
+            <a th:href="@{login}">as</a>
+        </div>
+    </div>
+
+
+
     <h1 class="flex justify-center items-center text-center pb-5 text-3xl">Login</h1>
     <form class="flex flex-col" action="/login" method="POST" th:object="${loginRequestDTO}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -13,8 +25,8 @@
                th:field="*{identifier}"
         />
         <label class="block" for="identifier_input">
-            <span class="">Email</span>
-            <p class="invisible peer-invalid:visible ...">Please provide a valid email address.</p>
+            <span class="">Email or Username</span>
+            <p class="invisible peer-invalid:visible ...">Please provide a valid email address or username.</p>
         </label>
 
         <input type="password"
